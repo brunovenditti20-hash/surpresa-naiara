@@ -64,9 +64,9 @@
     }
 
     h3 {
-      margin: 0 0 12px;
+      margin: 0 0 14px;
       color: #fff;
-      font-size: 18px;
+      font-size: 19px;
     }
 
     .instrucao {
@@ -184,7 +184,7 @@
       background: linear-gradient(180deg, #211b26 0%, #17141c 100%);
       border: 1px solid #3c2e42;
       border-radius: 18px;
-      padding: 22px;
+      padding: 24px 22px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
     }
 
@@ -298,21 +298,21 @@
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid #322638;
       border-radius: 12px;
-      padding: 14px;
+      padding: 16px;
     }
 
     .info-momento-titulo {
       font-weight: 600;
       color: #fda4af;
       font-size: 14.5px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .info-momento-desc {
       margin: 0;
       color: #e2dce5;
-      font-size: 14px;
-      line-height: 1.55;
+      font-size: 14.5px;
+      line-height: 1.65;
     }
 
     .carta-releitura {
@@ -334,28 +334,28 @@
       margin-bottom: 0;
     }
 
-    /* Cartas para abrir quando */
+    /* Cartas para abrir quando (com espaço interno amplo) */
     .secao-cartas {
-      margin-top: 22px;
-      padding-top: 20px;
+      margin-top: 26px;
+      padding-top: 22px;
       border-top: 1px solid #322638;
     }
 
     .grade-cartas {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 12px;
-      margin-top: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
     }
 
     .cartao-abrir {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid #483850;
-      border-radius: 14px;
-      padding: 14px;
+      border-radius: 16px;
+      padding: 18px 18px 20px;
       text-align: left;
       cursor: pointer;
-      transition: border-color 0.25s, background 0.25s;
+      transition: border-color 0.25s, transform 0.2s, background 0.25s;
     }
 
     .cartao-abrir:hover {
@@ -365,28 +365,41 @@
 
     .cartao-titulo {
       font-weight: 600;
-      font-size: 14.5px;
+      font-size: 15px;
+      line-height: 1.45;
       color: #fff;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 8px;
+      align-items: flex-start;
+      gap: 12px;
     }
 
     .cartao-indicador {
       font-size: 12px;
       color: #fda4af;
       flex-shrink: 0;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(244, 63, 94, 0.14);
+      border: 1px solid rgba(244, 63, 94, 0.35);
     }
 
     .cartao-revelado {
       display: none;
-      margin-top: 10px;
-      padding-top: 10px;
+      margin-top: 16px;
+      padding: 16px 16px 4px;
       border-top: 1px dashed #483850;
-      font-size: 14px;
-      line-height: 1.55;
-      color: #e8e2ec;
+      font-size: 14.5px;
+      line-height: 1.72;
+      color: #ede7f0;
+    }
+
+    .cartao-revelado p {
+      margin: 0 0 11px;
+    }
+
+    .cartao-revelado p:last-child {
+      margin-bottom: 4px;
     }
 
     .cartao-abrir.aberta .cartao-revelado {
@@ -394,7 +407,7 @@
     }
 
     .acoes-rodape {
-      margin-top: 18px;
+      margin-top: 22px;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
@@ -527,49 +540,131 @@
         </div>
       </div>
 
-      <!-- CARTAS PARA ABRIR QUANDO -->
+      <!-- 10 CARTAS COMPLETAS PARA ABRIR QUANDO -->
       <div class="secao-cartas">
         <h3>Cartas para abrir quando...</h3>
         <div class="grade-cartas">
+
+          <!-- 01 -->
           <div class="cartao-abrir" onclick="alternarCartao(this)">
             <div class="cartao-titulo">
-              <span>...a saudade apertar</span>
+              <span>01 • ...a saudade apertar</span>
               <span class="cartao-indicador">Abrir</span>
             </div>
             <div class="cartao-revelado">
-              Sinto a sua falta de verdade e quero sempre ter você por perto, mesmo nos dias mais corridos.
+              <p>Meu amor, se você abriu esta carta é porque o dia pediu um pouco mais de mim por perto. Eu sei que a correria, os horários e a rotina às vezes deixam tudo mais apertado do que a gente gostaria, mas quero que você saiba que você nunca sai da minha cabeça.</p>
+              <p>A minha vontade é sempre encurtar qualquer distância, te puxar para perto e ficar ali conversando sobre nada ou só sentindo a sua presença. Quando a saudade bater forte, lembra que o meu lugar favorito continua sendo ao seu lado.</p>
             </div>
           </div>
 
+          <!-- 02 -->
           <div class="cartao-abrir" onclick="alternarCartao(this)">
             <div class="cartao-titulo">
-              <span>...sentir que estamos distantes</span>
+              <span>02 • ...sentir que estamos distantes</span>
               <span class="cartao-indicador">Abrir</span>
             </div>
             <div class="cartao-revelado">
-              Eu quero melhorar isso, olhar nos seus olhos com calma e te mostrar o quanto eu te quero comigo.
+              <p>Eu escrevi este pensando naqueles dias em que parece que existe um espaço entre nós, ou quando dá aquele receio de falar algo e acabar pesando o seu dia. Quero que você leia isso com calma: você nunca me incomoda de verdade quando o assunto é o que você sente ou o que a gente vive.</p>
+              <p>Se em algum momento eu parecer retraído ou com vergonha, não é falta de amor — é só o meu jeito tentando não te sobrecarregar. Mas eu quero melhorar isso, olhar nos seus olhos e construir proximidade de verdade, sem medo.</p>
             </div>
           </div>
 
+          <!-- 03 -->
           <div class="cartao-abrir" onclick="alternarCartao(this)">
             <div class="cartao-titulo">
-              <span>...quiser saber o que sinto</span>
+              <span>03 • ...estiver cansada ou sobrecarregada</span>
               <span class="cartao-indicador">Abrir</span>
             </div>
             <div class="cartao-revelado">
-              Eu te amo, te desejo e tenho medo de perder o que temos porque você é muito especial para mim.
+              <p>Você carrega muita coisa nas costas, e muitas vezes faz isso com uma força silenciosa que eu admiro demais. Se hoje o dia veio pesado, cansativo ou cheio de cobranças, você não precisa dar conta de tudo sozinha o tempo inteiro.</p>
+              <p>Deixa eu cuidar de você, aliviar um pouco do peso ou simplesmente estar ali com você. Você é incrível, mas não precisa ser forte o tempo todo quando está comigo.</p>
             </div>
           </div>
 
+          <!-- 04 -->
           <div class="cartao-abrir" onclick="alternarCartao(this)">
             <div class="cartao-titulo">
-              <span>...celebrar o seu dia</span>
+              <span>04 • ...quiser lembrar o quanto te amo e te desejo</span>
               <span class="cartao-indicador">Abrir</span>
             </div>
             <div class="cartao-revelado">
-              Feliz aniversário, meu amor! Somos muito gratos por ter você na nossa vida, hoje e sempre.
+              <p>Não é só carinho de rotina e não é só gratidão pelo que construímos — eu te amo de um jeito profundo e continuo desejando você como mulher, como parceira, como o meu amor. Às vezes o cansaço esconde isso na correria, mas o que eu sinto por você está vivo e inteiro.</p>
+              <p>Quando abrir essa carta, lembra que eu ainda me encanto com você, que eu quero você comigo e que o meu desejo por você continua muito real.</p>
             </div>
           </div>
+
+          <!-- 05 -->
+          <div class="cartao-abrir" onclick="alternarCartao(this)">
+            <div class="cartao-titulo">
+              <span>05 • ...tiver medo ou insegurança</span>
+              <span class="cartao-indicador">Abrir</span>
+            </div>
+            <div class="cartao-revelado">
+              <p>Eu também conheço esse sentimento de perto — às vezes me pega um medo de perder o que temos justamente porque você é muito importante para mim. Se hoje bateu alguma insegurança ou dúvida no peito, não guarda isso sozinha.</p>
+              <p>A gente conversa, se entende e cuida do que é nosso. O que temos tem valor demais para ser tratado com descaso ou pressa.</p>
+            </div>
+          </div>
+
+          <!-- 06 -->
+          <div class="cartao-abrir" onclick="alternarCartao(this)">
+            <div class="cartao-titulo">
+              <span>06 • ...duvidar do quanto é importante para nós</span>
+              <span class="cartao-indicador">Abrir</span>
+            </div>
+            <div class="cartao-revelado">
+              <p>Se em algum dia a cabeça pregar peça e fizer você achar que o que faz ou quem você é passa despercebido, volta aqui e lê estas linhas. Nós te amamos e somos profundamente gratos por ter você na nossa vida.</p>
+              <p>A sua presença marca a nossa história e tem um lugar que ninguém mais ocupa. Você importa muito — hoje, amanhã e sempre.</p>
+            </div>
+          </div>
+
+          <!-- 07 -->
+          <div class="cartao-abrir" onclick="alternarCartao(this)">
+            <div class="cartao-titulo">
+              <span>07 • ...quiser um abraço leve e um sorriso</span>
+              <span class="cartao-indicador">Abrir</span>
+            </div>
+            <div class="cartao-revelado">
+              <p>Imagina agora um abraço calmo, daqueles que não têm pressa de acabar e tiram um pouco do peso do dia. É exatamente isso que eu queria que você sentisse ao abrir este cartão.</p>
+              <p>Você não precisa resolver tudo agora nem carregar o mundo sozinha neste instante. Respira fundo, solta os ombros e deixa escapar um sorriso — o meu carinho por você continua aqui, firme e perto.</p>
+            </div>
+          </div>
+
+          <!-- 08 -->
+          <div class="cartao-abrir" onclick="alternarCartao(this)">
+            <div class="cartao-titulo">
+              <span>08 • ...quiser lembrar do que ainda temos pela frente</span>
+              <span class="cartao-indicador">Abrir</span>
+            </div>
+            <div class="cartao-revelado">
+              <p>Por mais que a gente já tenha vivido tanta coisa, eu ainda sinto que há muitos capítulos bons esperando por nós. Coisas simples, conversas longas, risadas soltas e dias que ainda nem aconteceram.</p>
+              <p>Quando abrir esta carta, não olha só para o que já foi — olha também para o futuro que ainda podemos construir juntos, passo a passo, com mais leveza e mais sorrisos.</p>
+            </div>
+          </div>
+
+          <!-- 09 -->
+          <div class="cartao-abrir" onclick="alternarCartao(this)">
+            <div class="cartao-titulo">
+              <span>09 • ...for só um dia comum, para sorrir</span>
+              <span class="cartao-indicador">Abrir</span>
+            </div>
+            <div class="cartao-revelado">
+              <p>Não precisa acontecer nada grandioso para você abrir este cartão. Se hoje for só mais um dia normal, que isso sirva para te lembrar que a nossa vida é feita desses pequenos momentos, das nossas lembranças e de tudo o que ainda podemos construir.</p>
+              <p>Que você encontre um motivo simples e verdadeiro para sorrir ainda hoje.</p>
+            </div>
+          </div>
+
+          <!-- 10 -->
+          <div class="cartao-abrir" onclick="alternarCartao(this)">
+            <div class="cartao-titulo">
+              <span>10 • ...celebrar o seu novo ciclo</span>
+              <span class="cartao-indicador">Abrir</span>
+            </div>
+            <div class="cartao-revelado">
+              <p>Feliz aniversário, meu amor. Que este novo ciclo traga paz para a sua mente, leveza para os seus dias e realizações que façam os seus olhos brilharem. Que você nunca esqueça o quanto nós amamos você e o quanto somos gratos por ter você na nossa vida.</p>
+              <p>Eu te amo, te desejo e quero sempre você comigo.</p>
+            </div>
+          </div>
+
         </div>
       </div>
 
