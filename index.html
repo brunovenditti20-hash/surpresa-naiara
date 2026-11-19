@@ -20,31 +20,20 @@
       padding: 20px;
     }
 
-    /* Estilo de Carta / Envelope Lacrado */
-    .carta-container {
+    .container-card {
       width: 100%;
-      max-width: 520px;
-      position: relative;
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .carta-container.saindo {
-      opacity: 0;
-      transform: translateY(-20px) scale(0.97);
-    }
-
-    .envelope {
+      max-width: 540px;
       background: linear-gradient(180deg, #241e29 0%, #1a1720 100%);
       border: 1px solid #3c2e42;
       border-radius: 18px;
-      padding: 36px 26px 28px;
-      text-align: center;
+      padding: 32px 24px 26px;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
       position: relative;
       overflow: hidden;
+      transition: opacity 0.45s ease, transform 0.45s ease;
     }
 
-    .envelope::before {
+    .container-card::before {
       content: "";
       position: absolute;
       top: 0;
@@ -54,22 +43,8 @@
       background: linear-gradient(90deg, #be123c, #f43f5e, #fb7185);
     }
 
-    .selo {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 14px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #f43f5e, #9f1239);
-      border: 2px solid #fda4af;
-      display: grid;
-      place-items: center;
-      font-size: 24px;
-      box-shadow: 0 6px 16px rgba(225, 29, 72, 0.45);
-      transition: transform 0.5s ease;
-    }
-
-    .envelope.aberto .selo {
-      transform: rotate(360deg) scale(1.1);
+    .escondido {
+      display: none !important;
     }
 
     .etiqueta {
@@ -78,12 +53,14 @@
       letter-spacing: 2px;
       color: #fda4af;
       margin-bottom: 6px;
+      text-align: center;
     }
 
     h2 {
-      margin: 0 0 16px;
+      margin: 0 0 14px;
       color: #fff;
       font-size: 24px;
+      text-align: center;
     }
 
     h3 {
@@ -92,28 +69,17 @@
       font-size: 18px;
     }
 
-    .mensagem {
-      line-height: 1.65;
-      color: #e2dce5;
-      font-size: 15.5px;
-      margin-bottom: 22px;
-      background: rgba(255, 255, 255, 0.03);
-      border-left: 3px solid #f43f5e;
-      padding: 14px 16px;
-      border-radius: 0 12px 12px 0;
-      text-align: left;
-    }
-
     .instrucao {
       font-size: 14.5px;
-      color: #f4f4f6;
-      margin-bottom: 8px;
+      color: #e2dce5;
+      margin-bottom: 10px;
+      text-align: center;
     }
 
     input {
       width: 100%;
       padding: 13px 14px;
-      margin: 8px 0 12px;
+      margin: 8px 0 14px;
       border-radius: 12px;
       border: 1px solid #483850;
       background: #121016;
@@ -139,11 +105,17 @@
       font-weight: 600;
       cursor: pointer;
       box-shadow: 0 6px 18px rgba(225, 29, 72, 0.35);
-      transition: transform 0.15s ease, opacity 0.2s ease, background 0.2s ease;
+      transition: transform 0.15s ease, opacity 0.25s ease, background 0.2s ease;
     }
 
-    button:active {
+    button:active:not(:disabled) {
       transform: scale(0.98);
+    }
+
+    button:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+      box-shadow: none;
     }
 
     .btn-full {
@@ -155,21 +127,57 @@
       font-size: 14px;
       min-height: 20px;
       margin-top: 10px;
+      text-align: center;
     }
 
-    /* Área revelada após destravar */
+    /* Tela da Carta Íntima */
+    .carta-rolagem {
+      max-height: 330px;
+      overflow-y: auto;
+      padding: 16px;
+      margin: 14px 0 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid #3c2e42;
+      border-left: 3px solid #f43f5e;
+      border-radius: 12px;
+      line-height: 1.72;
+      color: #ede7f0;
+      font-size: 15px;
+      scroll-behavior: smooth;
+    }
+
+    .carta-rolagem p {
+      margin: 0 0 14px;
+    }
+
+    .carta-rolagem p:last-child {
+      margin-bottom: 0;
+    }
+
+    .assinatura-carta {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed #483850;
+      color: #fda4af;
+      font-style: italic;
+    }
+
+    .status-leitura {
+      font-size: 13px;
+      color: #d4ceda;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .status-leitura.concluida {
+      color: #fda4af;
+      font-weight: 600;
+    }
+
+    /* Área Principal Desbloqueada */
     #area-surpresa {
-      display: none;
       width: 100%;
-      max-width: 760px;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    #area-surpresa.visivel {
-      opacity: 1;
-      transform: translateY(0);
+      max-width: 780px;
     }
 
     .painel {
@@ -180,7 +188,6 @@
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
     }
 
-    /* Abas principais */
     .abas {
       display: flex;
       gap: 8px;
@@ -231,26 +238,57 @@
       border: 0;
     }
 
-    /* Seletor de vídeos curtos de momentos */
-    .seletor-momentos {
+    /* Controles de navegação entre vários vídeos */
+    .controles-carrossel {
       display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
       margin-top: 14px;
     }
 
-    .momento-btn {
-      flex: 1 1 130px;
+    .btn-nav {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid #483850;
+      box-shadow: none;
+      padding: 9px 14px;
+      font-size: 13.5px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .contador-video {
+      font-size: 13.5px;
+      color: #fda4af;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Faixa deslizável para passar para o lado com muitos vídeos */
+    .faixa-videos {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 2px 6px;
+      scrollbar-width: thin;
+      scrollbar-color: #be123c transparent;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .chip-video {
+      flex: 0 0 auto;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid #483850;
       box-shadow: none;
       color: #e2dce5;
-      font-size: 13.5px;
-      padding: 9px 12px;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
     }
 
-    .momento-btn.ativo {
-      background: rgba(244, 63, 94, 0.22);
+    .chip-video.ativo {
+      background: rgba(244, 63, 94, 0.24);
       border-color: #f43f5e;
       color: #fff;
     }
@@ -261,7 +299,6 @@
       border: 1px solid #322638;
       border-radius: 12px;
       padding: 14px;
-      text-align: left;
     }
 
     .info-momento-titulo {
@@ -278,7 +315,26 @@
       line-height: 1.55;
     }
 
-    /* Cartas interativas */
+    .carta-releitura {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid #3c2e42;
+      border-left: 3px solid #f43f5e;
+      border-radius: 12px;
+      padding: 18px;
+      line-height: 1.72;
+      color: #ede7f0;
+      font-size: 15px;
+    }
+
+    .carta-releitura p {
+      margin: 0 0 14px;
+    }
+
+    .carta-releitura p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Cartas para abrir quando */
     .secao-cartas {
       margin-top: 22px;
       padding-top: 20px;
@@ -299,7 +355,7 @@
       padding: 14px;
       text-align: left;
       cursor: pointer;
-      transition: border-color 0.25s, transform 0.2s, background 0.25s;
+      transition: border-color 0.25s, background 0.25s;
     }
 
     .cartao-abrir:hover {
@@ -340,7 +396,9 @@
     .acoes-rodape {
       margin-top: 18px;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .btn-secundario {
@@ -359,67 +417,111 @@
 </head>
 <body>
 
-  <!-- TELA INICIAL: CARTA LACRADA -->
-  <div class="carta-container" id="tela-bloqueio">
-    <div class="envelope" id="envelope">
-      <div class="selo" id="selo">💌</div>
-      <div class="etiqueta">Carta especial para você</div>
-      <h2>Feliz aniversário, meu amor!</h2>
-
-      <p class="mensagem">
-        Escrevo essas palavras antes mesmo de você apertar o play porque queria que soubesse o quanto eu te amo. Eu te admiro todos os dias pela mulher incrível que você é, pela sua força, pelo seu coração e por tudo o que você representa na nossa vida. Mesmo quando a correria do dia a dia aperta, sinto a sua falta e o meu desejo por você só cresce. Que este novo ciclo traga muita paz, alegria e realizações para você.
-      </p>
-
-      <p class="instrucao"><strong>Para abrir a surpresa, digite o aniversário da Rebeca (DDMM)</strong></p>
-      <input type="password" id="senha" inputmode="numeric" placeholder="••••" maxlength="4" autocomplete="off" />
-      <button type="button" class="btn-full" onclick="verificarSenha()">Romper o selo e abrir surpresa</button>
-      <div class="erro" id="mensagem-erro"></div>
-    </div>
+  <!-- ETAPA 1: APENAS SENHA -->
+  <div class="container-card" id="tela-senha">
+    <div class="etiqueta">Acesso reservado</div>
+    <h2>Uma surpresa para você</h2>
+    <p class="instrucao">Digite o aniversário da Rebeca (DDMM) para abrir:</p>
+    <input type="password" id="senha" inputmode="numeric" placeholder="••••" maxlength="4" autocomplete="off" />
+    <button type="button" class="btn-full" onclick="verificarSenha()">Desbloquear</button>
+    <div class="erro" id="mensagem-erro"></div>
   </div>
 
-  <!-- ÁREA PRINCIPAL DESBLOQUEADA -->
-  <div id="area-surpresa">
+  <!-- ETAPA 2: CARTA ÍNTIMA (MOSTRADA APÓS A SENHA, EXIGE LEITURA ATÉ O FINAL) -->
+  <div class="container-card escondido" id="tela-carta">
+    <div class="etiqueta">Para você ler com calma</div>
+    <h2>Feliz aniversário, meu amor</h2>
+
+    <div class="carta-rolagem" id="caixa-carta" onscroll="verificarFimDaCarta()">
+      <p>
+        Meu amor, antes de qualquer vídeo ou surpresa, eu precisava parar um instante e te falar o que mora aqui dentro.
+      </p>
+      <p>
+        Eu te amo profundamente — não só pelos dias fáceis, mas pelo que construímos e pelo jeito verdadeiro como você existe na minha vida. A minha admiração por você cresce a cada dia: pela sua força, pela sua sensibilidade, pelo coração que você tem e por tudo o que você faz por nós.
+      </p>
+      <p>
+        Mesmo quando a rotina aperta, o trabalho cansa ou os dias passam rápido demais, a saudade de você está sempre presente. E junto com ela vem o meu desejo por você, que continua vivo, forte e inteiro, como no primeiro momento em que me encantei por você.
+      </p>
+      <p>
+        Que este novo ciclo seja leve, bonito e cheio de motivos para você sorrir. Eu estou aqui, sempre ao seu lado, te amando, te admirando e querendo viver ainda muita coisa com você.
+      </p>
+      <p class="assinatura-carta">
+        Com todo o meu amor, saudade e desejo,<br />
+        Seu marido.
+      </p>
+    </div>
+
+    <div class="status-leitura" id="status-leitura">
+      Role até o final da carta para liberar o restante da surpresa.
+    </div>
+
+    <button type="button" class="btn-full" id="btn-seguir-surpresa" disabled onclick="irParaSurpresa()">
+      Continuar para a surpresa →
+    </button>
+  </div>
+
+  <!-- ETAPA 3: ÁREA PRINCIPAL DESBLOQUEADA -->
+  <div class="escondido" id="area-surpresa">
     <div class="painel">
-      <!-- ABAS PRINCIPAIS -->
       <div class="abas" role="tablist">
         <button type="button" class="aba-btn ativa" id="btn-aba-momentos" onclick="trocarAba('momentos')">
           🎬 Momentos
         </button>
         <button type="button" class="aba-btn" id="btn-aba-carta" onclick="trocarAba('carta')">
-          💌 Sua Carta
+          💌 Reler a Carta
         </button>
       </div>
 
-      <!-- ABA 1: MOMENTOS (SELETOR DE VÍDEOS CURTOS) -->
+      <!-- ABA MOMENTOS: VÁRIOS VÍDEOS COM NAVEGAÇÃO E FAIXA DESLIZÁVEL -->
       <div class="conteudo-aba ativa" id="aba-momentos">
         <div class="video-box">
           <iframe
             id="player-yt"
-            data-src="https://www.youtube.com/embed/UB3jqBekqHw?rel=0"
+            src=""
             title="Vídeo de momento especial"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
 
-        <div class="seletor-momentos" id="seletor-momentos"></div>
+        <div class="controles-carrossel">
+          <button type="button" class="btn-nav" id="btn-anterior" onclick="mudarVideo(-1)">← Anterior</button>
+          <div class="contador-video" id="contador-video">1 / 1</div>
+          <button type="button" class="btn-nav" id="btn-proximo" onclick="mudarVideo(1)">Próximo →</button>
+        </div>
+
+        <!-- Passe para o lado no toque/mouse para escolher entre muitos vídeos -->
+        <div class="faixa-videos" id="faixa-videos" aria-label="Lista de vídeos para passar para o lado"></div>
 
         <div class="info-momento">
-          <div class="info-momento-titulo" id="momento-titulo">Momento Principal</div>
-          <p class="info-momento-desc" id="momento-desc">
-            O vídeo especial preparado para abrir o seu dia e reviver os nossos melhores momentos.
+          <div class="info-momento-titulo" id="momento-titulo"></div>
+          <p class="info-momento-desc" id="momento-desc"></p>
+        </div>
+      </div>
+
+      <!-- ABA CARTA: RELEITURA A QUALQUER MOMENTO -->
+      <div class="conteudo-aba" id="aba-carta">
+        <div class="carta-releitura">
+          <p>
+            Meu amor, antes de qualquer vídeo ou surpresa, eu precisava parar um instante e te falar o que mora aqui dentro.
+          </p>
+          <p>
+            Eu te amo profundamente — não só pelos dias fáceis, mas pelo que construímos e pelo jeito verdadeiro como você existe na minha vida. A minha admiração por você cresce a cada dia: pela sua força, pela sua sensibilidade, pelo coração que você tem e por tudo o que você faz por nós.
+          </p>
+          <p>
+            Mesmo quando a rotina aperta, o trabalho cansa ou os dias passam rápido demais, a saudade de você está sempre presente. E junto com ela vem o meu desejo por você, que continua vivo, forte e inteiro, como no primeiro momento em que me encantei por você.
+          </p>
+          <p>
+            Que este novo ciclo seja leve, bonito e cheio de motivos para você sorrir. Eu estou aqui, sempre ao seu lado, te amando, te admirando e querendo viver ainda muita coisa com você.
+          </p>
+          <p class="assinatura-carta">
+            Com todo o meu amor, saudade e desejo,<br />
+            Seu marido.
           </p>
         </div>
       </div>
 
-      <!-- ABA 2: CARTA REVELADA -->
-      <div class="conteudo-aba" id="aba-carta">
-        <div class="mensagem" style="margin-bottom: 0;">
-          Escrevo essas palavras antes mesmo de você apertar o play porque queria que soubesse o quanto eu te amo. Eu te admiro todos os dias pela mulher incrível que você é, pela sua força, pelo seu coração e por tudo o que você representa na nossa vida. Mesmo quando a correria do dia a dia aperta, sinto a sua falta e o meu desejo por você só cresce. Que este novo ciclo traga muita paz, alegria e realizações para você.
-        </div>
-      </div>
-
-      <!-- CARTAS PARA ABRIR QUANDO... -->
+      <!-- CARTAS PARA ABRIR QUANDO -->
       <div class="secao-cartas">
         <h3>Cartas para abrir quando...</h3>
         <div class="grade-cartas">
@@ -466,7 +568,8 @@
       </div>
 
       <div class="acoes-rodape">
-        <button type="button" class="btn-secundario" onclick="bloquearNovamente()">🔒 Bloquear tela</button>
+        <button type="button" class="btn-secundario" onclick="abrirTelaCartaDireto()">💌 Ver carta em tela cheia</button>
+        <button type="button" class="btn-secundario" onclick="bloquearNovamente()">🔒 Bloquear</button>
       </div>
     </div>
   </div>
@@ -474,99 +577,137 @@
   <script>
     const SENHA_CORRETA = "0803";
 
-    // Edite aqui os vídeos curtos de momentos (troque os IDs do YouTube e os textos)
+    // Adicione quantos vídeos quiser aqui (basta trocar os IDs do YouTube e os textos)
     const MOMENTOS_VIDEO = [
       {
-        botao: "🎬 Principal",
+        chip: "01 • Principal",
         id: "UB3jqBekqHw",
-        titulo: "Momento Principal",
-        descricao: "O vídeo especial preparado para abrir o seu dia e reviver os nossos melhores momentos."
+        titulo: "Momento 01 — Principal",
+        descricao: "O vídeo especial para abrir esse capítulo do seu aniversário."
       },
       {
-        botao: "✨ Momento 2",
+        chip: "02 • Lembrança",
         id: "UB3jqBekqHw",
-        titulo: "Momento 2",
-        descricao: "Coloque aqui o ID do segundo vídeo curto do YouTube e uma legenda especial sobre esse registro."
+        titulo: "Momento 02",
+        descricao: "Substitua o ID pelo próximo vídeo curto do YouTube e escreva a legenda desse momento."
       },
       {
-        botao: "💛 Momento 3",
+        chip: "03 • Risadas",
         id: "UB3jqBekqHw",
-        titulo: "Momento 3",
-        descricao: "Coloque aqui o ID do terceiro vídeo curto do YouTube para complementar a surpresa."
+        titulo: "Momento 03",
+        descricao: "Substitua o ID pelo terceiro vídeo curto do YouTube."
+      },
+      {
+        chip: "04 • Nós dois",
+        id: "UB3jqBekqHw",
+        titulo: "Momento 04",
+        descricao: "Continue adicionando quantos momentos quiser nessa lista."
       }
     ];
 
-    let playerInicializado = false;
+    let indiceVideoAtual = 0;
+    let leuCartaCompleta = false;
+    let playerCarregado = false;
 
-    function montarSeletorMomentos() {
-      const container = document.getElementById("seletor-momentos");
-      container.innerHTML = "";
+    function montarListaVideos() {
+      const faixa = document.getElementById("faixa-videos");
+      faixa.innerHTML = "";
 
       MOMENTOS_VIDEO.forEach((item, index) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "momento-btn" + (index === 0 ? " ativo" : "");
-        btn.textContent = item.botao;
-        btn.onclick = () => selecionarMomento(index, true);
-        container.appendChild(btn);
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "chip-video" + (index === indiceVideoAtual ? " ativo" : "");
+        chip.textContent = item.chip;
+        chip.onclick = () => selecionarVideo(index, true);
+        faixa.appendChild(chip);
       });
 
-      atualizarTextoMomento(0);
+      atualizarInterfaceVideo(false);
     }
 
-    function atualizarTextoMomento(index) {
-      const item = MOMENTOS_VIDEO[index];
-      document.getElementById("momento-titulo").textContent = item.titulo;
-      document.getElementById("momento-desc").textContent = item.descricao;
-    }
+    function atualizarInterfaceVideo(atualizarIframe) {
+      const total = MOMENTOS_VIDEO.length;
+      const atual = MOMENTOS_VIDEO[indiceVideoAtual];
 
-    function selecionarMomento(index, carregarVideo) {
-      const botoes = document.querySelectorAll(".momento-btn");
-      botoes.forEach((b, i) => b.classList.toggle("ativo", i === index));
+      document.getElementById("contador-video").textContent = `${indiceVideoAtual + 1} / ${total}`;
+      document.getElementById("momento-titulo").textContent = atual.titulo;
+      document.getElementById("momento-desc").textContent = atual.descricao;
 
-      atualizarTextoMomento(index);
+      document.getElementById("btn-anterior").disabled = indiceVideoAtual === 0;
+      document.getElementById("btn-proximo").disabled = indiceVideoAtual === total - 1;
 
-      if (carregarVideo) {
+      const chips = document.querySelectorAll(".chip-video");
+      chips.forEach((chip, idx) => {
+        const ativo = idx === indiceVideoAtual;
+        chip.classList.toggle("ativo", ativo);
+        if (ativo) {
+          chip.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
+      });
+
+      if (atualizarIframe) {
         const iframe = document.getElementById("player-yt");
-        iframe.src = `https://www.youtube.com/embed/${MOMENTOS_VIDEO[index].id}?rel=0`;
-        playerInicializado = true;
+        iframe.src = `https://www.youtube.com/embed/${atual.id}?rel=0`;
+        playerCarregado = true;
       }
+    }
+
+    function selecionarVideo(index, atualizarIframe) {
+      if (index < 0 || index >= MOMENTOS_VIDEO.length) return;
+      indiceVideoAtual = index;
+      atualizarInterfaceVideo(atualizarIframe);
+    }
+
+    function mudarVideo(delta) {
+      selecionarVideo(indiceVideoAtual + delta, true);
     }
 
     function verificarSenha() {
       const digitada = document.getElementById("senha").value.trim();
       const erro = document.getElementById("mensagem-erro");
-      const container = document.getElementById("tela-bloqueio");
-      const envelope = document.getElementById("envelope");
-      const selo = document.getElementById("selo");
 
       if (digitada === SENHA_CORRETA) {
         erro.textContent = "";
-        selo.textContent = "❤️";
-        envelope.classList.add("aberto");
-
-        setTimeout(() => {
-          container.classList.add("saindo");
-        }, 350);
-
-        setTimeout(() => {
-          container.style.display = "none";
-          const areaSurpresa = document.getElementById("area-surpresa");
-          areaSurpresa.style.display = "block";
-
-          const iframe = document.getElementById("player-yt");
-          if (!playerInicializado) {
-            iframe.src = iframe.getAttribute("data-src");
-            playerInicializado = true;
-          }
-
-          requestAnimationFrame(() => {
-            areaSurpresa.classList.add("visivel");
-          });
-        }, 850);
+        document.getElementById("tela-senha").classList.add("escondido");
+        document.getElementById("tela-carta").classList.remove("escondido");
+        setTimeout(verificarFimDaCarta, 100);
       } else {
-        erro.textContent = "Ops, essa data não confere. Tente novamente!";
+        erro.textContent = "Data incorreta. Tente novamente!";
       }
+    }
+
+    function verificarFimDaCarta() {
+      const caixa = document.getElementById("caixa-carta");
+      const status = document.getElementById("status-leitura");
+      const botao = document.getElementById("btn-seguir-surpresa");
+
+      // Se não houver rolagem necessária (tela grande) ou se chegou ao final da carta
+      const semRolagem = caixa.scrollHeight <= caixa.clientHeight + 4;
+      const chegouAoFim = caixa.scrollTop + caixa.clientHeight >= caixa.scrollHeight - 16;
+
+      if (semRolagem || chegouAoFim) {
+        leuCartaCompleta = true;
+        botao.disabled = false;
+        status.textContent = "Leitura concluída. Você já pode seguir para a surpresa.";
+        status.classList.add("concluida");
+      }
+    }
+
+    function irParaSurpresa() {
+      if (!leuCartaCompleta) return;
+
+      document.getElementById("tela-carta").classList.add("escondido");
+      document.getElementById("area-surpresa").classList.remove("escondido");
+
+      if (!playerCarregado) {
+        atualizarInterfaceVideo(true);
+      }
+    }
+
+    function abrirTelaCartaDireto() {
+      document.getElementById("area-surpresa").classList.add("escondido");
+      document.getElementById("tela-carta").classList.remove("escondido");
+      document.getElementById("caixa-carta").scrollTop = 0;
     }
 
     function trocarAba(nomeAba) {
@@ -584,22 +725,19 @@
     }
 
     function bloquearNovamente() {
-      const container = document.getElementById("tela-bloqueio");
-      const areaSurpresa = document.getElementById("area-surpresa");
-      const envelope = document.getElementById("envelope");
-      const selo = document.getElementById("selo");
+      leuCartaCompleta = false;
+      playerCarregado = false;
+      document.getElementById("player-yt").src = "";
+      document.getElementById("senha").value = "";
+      document.getElementById("caixa-carta").scrollTop = 0;
+      document.getElementById("btn-seguir-surpresa").disabled = true;
+      const status = document.getElementById("status-leitura");
+      status.textContent = "Role até o final da carta para liberar o restante da surpresa.";
+      status.classList.remove("concluida");
 
-      areaSurpresa.classList.remove("visivel");
-      setTimeout(() => {
-        areaSurpresa.style.display = "none";
-        envelope.classList.remove("aberto");
-        selo.textContent = "💌";
-        document.getElementById("senha").value = "";
-        container.style.display = "block";
-        requestAnimationFrame(() => {
-          container.classList.remove("saindo");
-        });
-      }, 300);
+      document.getElementById("area-surpresa").classList.add("escondido");
+      document.getElementById("tela-carta").classList.add("escondido");
+      document.getElementById("tela-senha").classList.remove("escondido");
     }
 
     document.getElementById("senha").addEventListener("keydown", function (e) {
@@ -608,7 +746,7 @@
       }
     });
 
-    montarSeletorMomentos();
+    montarListaVideos();
   </script>
 </body>
 </html>
