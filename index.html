@@ -3,90 +3,178 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feliz Aniversário, Meu Amor!</title>
+  <title>Para Você, Meu Amor</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
       display: grid;
       place-items: center;
-      background: #121216;
+      background: radial-gradient(circle at top, #231924 0%, #121216 70%);
       color: #f4f4f6;
       font-family: system-ui, -apple-system, sans-serif;
       padding: 20px;
-      box-sizing: border-box;
     }
-    .card {
+
+    /* Estilo de Carta / Envelope Lacrado */
+    .carta-container {
       width: 100%;
       max-width: 520px;
-      background: #1c1c24;
-      border: 1px solid #2e2e3a;
-      border-radius: 16px;
-      padding: 28px 24px;
+      position: relative;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .carta-container.saindo {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.97);
+    }
+
+    .envelope {
+      background: linear-gradient(180deg, #241e29 0%, #1a1720 100%);
+      border: 1px solid #3c2e42;
+      border-radius: 18px;
+      padding: 36px 26px 28px;
       text-align: center;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      position: relative;
+      overflow: hidden;
     }
-    h2 {
-      margin-top: 0;
-      color: #fff;
+
+    /* Aba superior decorativa do envelope */
+    .envelope::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #be123c, #f43f5e, #fb7185);
     }
-    .mensagem {
-      line-height: 1.6;
-      color: #d4d4dc;
-      font-size: 15px;
-      margin-bottom: 20px;
+
+    .selo {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #f43f5e, #9f1239);
+      border: 2px solid #fda4af;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      box-shadow: 0 6px 16px rgba(225, 29, 72, 0.45);
+      transition: transform 0.5s ease;
     }
-    .instrucao {
-      font-size: 15px;
-      color: #fff;
+
+    .envelope.aberto .selo {
+      transform: rotate(360deg) scale(1.1);
+    }
+
+    .etiqueta {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fda4af;
       margin-bottom: 6px;
     }
+
+    h2 {
+      margin: 0 0 16px;
+      color: #fff;
+      font-size: 24px;
+    }
+
+    .mensagem {
+      line-height: 1.65;
+      color: #e2dce5;
+      font-size: 15.5px;
+      margin-bottom: 22px;
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid #f43f5e;
+      padding: 14px 16px;
+      border-radius: 0 12px 12px 0;
+      text-align: left;
+    }
+
+    .instrucao {
+      font-size: 14.5px;
+      color: #f4f4f6;
+      margin-bottom: 8px;
+    }
+
     input {
       width: 100%;
-      box-sizing: border-box;
-      padding: 12px 14px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #3a3a4a;
-      background: #121216;
+      padding: 13px 14px;
+      margin: 8px 0 12px;
+      border-radius: 12px;
+      border: 1px solid #483850;
+      background: #121016;
       color: #fff;
-      font-size: 16px;
+      font-size: 18px;
       text-align: center;
-      letter-spacing: 2px;
+      letter-spacing: 4px;
+      outline: none;
+      transition: border-color 0.2s;
     }
+
+    input:focus {
+      border-color: #f43f5e;
+    }
+
     button {
       width: 100%;
-      padding: 12px;
+      padding: 13px;
       border: none;
-      border-radius: 10px;
-      background: #e11d48;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e11d48, #be123c);
       color: #fff;
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
+      box-shadow: 0 6px 18px rgba(225, 29, 72, 0.35);
+      transition: transform 0.15s ease, opacity 0.2s ease;
     }
-    button:hover {
-      opacity: 0.92;
+
+    button:active {
+      transform: scale(0.98);
     }
+
     .erro {
-      color: #fb7185;
+      color: #fda4af;
       font-size: 14px;
       min-height: 20px;
-      margin-top: 8px;
+      margin-top: 10px;
     }
+
+    /* Área revelada após destravar o selo */
     #area-video {
       display: none;
       width: 100%;
       max-width: 720px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
+
+    #area-video.visivel {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .video-box {
       position: relative;
       width: 100%;
       padding-bottom: 56.25%;
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
       background: #000;
+      border: 1px solid #3c2e42;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
     }
+
     .video-box iframe {
       position: absolute;
       inset: 0;
@@ -94,19 +182,45 @@
       height: 100%;
       border: 0;
     }
+
+    .acoes-video {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-secundario {
+      width: auto;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid #483850;
+      box-shadow: none;
+      font-size: 14px;
+      color: #f4f4f6;
+    }
+
+    .btn-secundario:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
   </style>
 </head>
 <body>
 
-  <div class="card" id="tela-bloqueio">
-    <h2>Feliz aniversário, meu amor!</h2>
-    <p class="mensagem">
-      Escrevo essas palavras antes mesmo de você apertar o play porque queria que soubesse o quanto eu te amo. Eu te admiro todos os dias pela mulher incrível que você é, pela sua força, pelo seu coração e por tudo o que você representa na nossa vida. Mesmo quando a correria do dia a dia aperta, sinto a sua falta e o meu desejo por você só cresce. Que este novo ciclo traga muita paz, alegria e realizações para você.
-    </p>
-    <p class="instrucao"><strong>Para ver o vídeo, digite o aniversário da Rebeca (DDMM)</strong></p>
-    <input type="password" id="senha" inputmode="numeric" placeholder="DDMM" autocomplete="off" />
-    <button type="button" onclick="verificarSenha()">Abrir surpresa</button>
-    <div class="erro" id="mensagem-erro"></div>
+  <div class="carta-container" id="tela-bloqueio">
+    <div class="envelope" id="envelope">
+      <div class="selo" id="selo">💌</div>
+      <div class="etiqueta">Carta especial para você</div>
+      <h2>Feliz aniversário, meu amor!</h2>
+
+      <p class="mensagem">
+        Escrevo essas palavras antes mesmo de você apertar o play porque queria que soubesse o quanto eu te amo. Eu te admiro todos os dias pela mulher incrível que você é, pela sua força, pelo seu coração e por tudo o que você representa na nossa vida. Mesmo quando a correria do dia a dia aperta, sinto a sua falta e o meu desejo por você só cresce. Que este novo ciclo traga muita paz, alegria e realizações para você.
+      </p>
+
+      <p class="instrucao"><strong>Para abrir o vídeo, digite o aniversário da Rebeca (DDMM)</strong></p>
+      <input type="password" id="senha" inputmode="numeric" placeholder="••••" maxlength="4" autocomplete="off" />
+      <button type="button" onclick="verificarSenha()">Romper o selo e abrir surpresa</button>
+      <div class="erro" id="mensagem-erro"></div>
+    </div>
   </div>
 
   <div id="area-video">
@@ -119,6 +233,10 @@
         allowfullscreen>
       </iframe>
     </div>
+
+    <div class="acoes-video">
+      <button type="button" class="btn-secundario" onclick="relendoCarta()">💌 Ler a mensagem novamente</button>
+    </div>
   </div>
 
   <script>
@@ -127,18 +245,48 @@
     function verificarSenha() {
       const digitada = document.getElementById("senha").value.trim();
       const erro = document.getElementById("mensagem-erro");
+      const container = document.getElementById("tela-bloqueio");
+      const envelope = document.getElementById("envelope");
+      const selo = document.getElementById("selo");
 
       if (digitada === SENHA_CORRETA) {
-        document.getElementById("tela-bloqueio").style.display = "none";
-        document.getElementById("area-video").style.display = "block";
+        erro.textContent = "";
+        selo.textContent = "❤️";
+        envelope.classList.add("aberto");
 
-        const iframe = document.getElementById("player-yt");
-        if (!iframe.src) {
-          iframe.src = iframe.getAttribute("data-src");
-        }
+        setTimeout(() => {
+          container.classList.add("saindo");
+        }, 350);
+
+        setTimeout(() => {
+          container.style.display = "none";
+          const areaVideo = document.getElementById("area-video");
+          areaVideo.style.display = "block";
+
+          const iframe = document.getElementById("player-yt");
+          if (!iframe.src) {
+            iframe.src = iframe.getAttribute("data-src");
+          }
+
+          requestAnimationFrame(() => {
+            areaVideo.classList.add("visivel");
+          });
+        }, 850);
       } else {
         erro.textContent = "Ops, essa data não confere. Tente novamente!";
       }
+    }
+
+    function relendoCarta() {
+      const container = document.getElementById("tela-bloqueio");
+      const areaVideo = document.getElementById("area-video");
+
+      areaVideo.classList.remove("visivel");
+      setTimeout(() => {
+        areaVideo.style.display = "none";
+        container.style.display = "block";
+        container.classList.remove("saindo");
+      }, 300);
     }
 
     document.getElementById("senha").addEventListener("keydown", function (e) {
