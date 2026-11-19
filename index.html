@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Um presente especial</title>
+  <title>Feliz Aniversário, Meu Amor!</title>
   <style>
     body {
       margin: 0;
@@ -14,22 +14,38 @@
       color: #f4f4f6;
       font-family: system-ui, -apple-system, sans-serif;
       padding: 20px;
+      box-sizing: border-box;
     }
     .card {
       width: 100%;
-      max-width: 440px;
+      max-width: 520px;
       background: #1c1c24;
       border: 1px solid #2e2e3a;
       border-radius: 16px;
-      padding: 28px;
+      padding: 28px 24px;
       text-align: center;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+    h2 {
+      margin-top: 0;
+      color: #fff;
+    }
+    .mensagem {
+      line-height: 1.6;
+      color: #d4d4dc;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+    .instrucao {
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 6px;
     }
     input {
       width: 100%;
       box-sizing: border-box;
       padding: 12px 14px;
-      margin: 14px 0 10px;
+      margin: 10px 0;
       border-radius: 10px;
       border: 1px solid #3a3a4a;
       background: #121216;
@@ -83,8 +99,11 @@
 <body>
 
   <div class="card" id="tela-bloqueio">
-    <h2>Para ver o vídeo</h2>
-    <p>Digite o aniversário da Rebeca (DDMM)</p>
+    <h2>Feliz aniversário, meu amor!</h2>
+    <p class="mensagem">
+      Escrevo essas palavras antes mesmo de você apertar o play porque queria que soubesse o quanto eu te amo. Eu te admiro todos os dias pela mulher incrível que você é, pela sua força, pelo seu coração e por tudo o que você representa na nossa vida. Mesmo quando a correria do dia a dia aperta, sinto a sua falta e o meu desejo por você só cresce. Que este novo ciclo traga muita paz, alegria e realizações para você.
+    </p>
+    <p class="instrucao"><strong>Para ver o vídeo, digite o aniversário da Rebeca (DDMM)</strong></p>
     <input type="password" id="senha" inputmode="numeric" placeholder="DDMM" autocomplete="off" />
     <button type="button" onclick="verificarSenha()">Abrir surpresa</button>
     <div class="erro" id="mensagem-erro"></div>
