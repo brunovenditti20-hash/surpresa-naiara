@@ -180,7 +180,7 @@
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
     }
 
-    /* Abas (Opção 2) */
+    /* Abas principais */
     .abas {
       display: flex;
       gap: 8px;
@@ -189,7 +189,7 @@
     }
 
     .aba-btn {
-      flex: 1 1 140px;
+      flex: 1 1 160px;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid #3c2e42;
       box-shadow: none;
@@ -231,36 +231,54 @@
       border: 0;
     }
 
-    .momento-card {
+    /* Seletor de vídeos curtos de momentos */
+    .seletor-momentos {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .momento-btn {
+      flex: 1 1 130px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #483850;
+      box-shadow: none;
+      color: #e2dce5;
+      font-size: 13.5px;
+      padding: 9px 12px;
+    }
+
+    .momento-btn.ativo {
+      background: rgba(244, 63, 94, 0.22);
+      border-color: #f43f5e;
+      color: #fff;
+    }
+
+    .info-momento {
+      margin-top: 12px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid #322638;
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 14px;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: left;
     }
 
-    .momento-card img {
-      width: 100%;
-      max-height: 340px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .legenda {
-      color: #e2dce5;
-      font-size: 14.5px;
-      line-height: 1.55;
-      margin: 0;
-    }
-
-    .dica-subida {
-      font-size: 13px;
+    .info-momento-titulo {
+      font-weight: 600;
       color: #fda4af;
-      margin-top: 8px;
+      font-size: 14.5px;
+      margin-bottom: 4px;
     }
 
-    /* Cartas interativas (Opção 3) */
+    .info-momento-desc {
+      margin: 0;
+      color: #e2dce5;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    /* Cartas interativas */
     .secao-cartas {
       margin-top: 22px;
       padding-top: 20px;
@@ -362,60 +380,46 @@
   <!-- ÁREA PRINCIPAL DESBLOQUEADA -->
   <div id="area-surpresa">
     <div class="painel">
-      <!-- OPÇÃO 2: ABAS INTERATIVAS -->
+      <!-- ABAS PRINCIPAIS -->
       <div class="abas" role="tablist">
-        <button type="button" class="aba-btn ativa" id="btn-aba-video" onclick="trocarAba('video')">
-          🎬 Vídeo Principal
-        </button>
-        <button type="button" class="aba-btn" id="btn-aba-album" onclick="trocarAba('album')">
-          📸 Momentos do Álbum
+        <button type="button" class="aba-btn ativa" id="btn-aba-momentos" onclick="trocarAba('momentos')">
+          🎬 Momentos
         </button>
         <button type="button" class="aba-btn" id="btn-aba-carta" onclick="trocarAba('carta')">
           💌 Sua Carta
         </button>
       </div>
 
-      <!-- ABA 1: VÍDEO PRINCIPAL -->
-      <div class="conteudo-aba ativa" id="aba-video">
+      <!-- ABA 1: MOMENTOS (SELETOR DE VÍDEOS CURTOS) -->
+      <div class="conteudo-aba ativa" id="aba-momentos">
         <div class="video-box">
           <iframe
             id="player-yt"
             data-src="https://www.youtube.com/embed/UB3jqBekqHw?rel=0"
-            title="Vídeo surpresa"
+            title="Vídeo de momento especial"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
-      </div>
 
-      <!-- ABA 2: MOMENTOS DO ÁLBUM -->
-      <div class="conteudo-aba" id="aba-album">
-        <div class="momento-card">
-          <!-- Para usar uma foto real: suba momento1.jpg no GitHub e descomente a linha <img> abaixo -->
-          <!-- <img src="momento1.jpg" alt="Momento especial do álbum" /> -->
-          <p class="legenda">
-            <strong>Capítulo do álbum:</strong> Cada página que montei pensando em você carrega um pedaço do que vivemos e da nossa história.
-          </p>
-          <p class="dica-subida">
-            Dica: envie fotos como <code>momento1.jpg</code> no repositório do GitHub e ative a tag &lt;img&gt; aqui para exibi-las.
-          </p>
-        </div>
+        <div class="seletor-momentos" id="seletor-momentos"></div>
 
-        <div class="momento-card">
-          <p class="legenda">
-            <strong>Conexão com o papel:</strong> Sempre que encontrar um QR Code nas páginas do álbum, ele leva direto para reviver aquele momento em vídeo.
+        <div class="info-momento">
+          <div class="info-momento-titulo" id="momento-titulo">Momento Principal</div>
+          <p class="info-momento-desc" id="momento-desc">
+            O vídeo especial preparado para abrir o seu dia e reviver os nossos melhores momentos.
           </p>
         </div>
       </div>
 
-      <!-- ABA 3: CARTA REVELADA -->
+      <!-- ABA 2: CARTA REVELADA -->
       <div class="conteudo-aba" id="aba-carta">
         <div class="mensagem" style="margin-bottom: 0;">
           Escrevo essas palavras antes mesmo de você apertar o play porque queria que soubesse o quanto eu te amo. Eu te admiro todos os dias pela mulher incrível que você é, pela sua força, pelo seu coração e por tudo o que você representa na nossa vida. Mesmo quando a correria do dia a dia aperta, sinto a sua falta e o meu desejo por você só cresce. Que este novo ciclo traga muita paz, alegria e realizações para você.
         </div>
       </div>
 
-      <!-- OPÇÃO 3: CARTAS PARA ABRIR QUANDO... -->
+      <!-- CARTAS PARA ABRIR QUANDO... -->
       <div class="secao-cartas">
         <h3>Cartas para abrir quando...</h3>
         <div class="grade-cartas">
@@ -470,6 +474,65 @@
   <script>
     const SENHA_CORRETA = "0803";
 
+    // Edite aqui os vídeos curtos de momentos (troque os IDs do YouTube e os textos)
+    const MOMENTOS_VIDEO = [
+      {
+        botao: "🎬 Principal",
+        id: "UB3jqBekqHw",
+        titulo: "Momento Principal",
+        descricao: "O vídeo especial preparado para abrir o seu dia e reviver os nossos melhores momentos."
+      },
+      {
+        botao: "✨ Momento 2",
+        id: "UB3jqBekqHw",
+        titulo: "Momento 2",
+        descricao: "Coloque aqui o ID do segundo vídeo curto do YouTube e uma legenda especial sobre esse registro."
+      },
+      {
+        botao: "💛 Momento 3",
+        id: "UB3jqBekqHw",
+        titulo: "Momento 3",
+        descricao: "Coloque aqui o ID do terceiro vídeo curto do YouTube para complementar a surpresa."
+      }
+    ];
+
+    let playerInicializado = false;
+
+    function montarSeletorMomentos() {
+      const container = document.getElementById("seletor-momentos");
+      container.innerHTML = "";
+
+      MOMENTOS_VIDEO.forEach((item, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "momento-btn" + (index === 0 ? " ativo" : "");
+        btn.textContent = item.botao;
+        btn.onclick = () => selecionarMomento(index, true);
+        container.appendChild(btn);
+      });
+
+      atualizarTextoMomento(0);
+    }
+
+    function atualizarTextoMomento(index) {
+      const item = MOMENTOS_VIDEO[index];
+      document.getElementById("momento-titulo").textContent = item.titulo;
+      document.getElementById("momento-desc").textContent = item.descricao;
+    }
+
+    function selecionarMomento(index, carregarVideo) {
+      const botoes = document.querySelectorAll(".momento-btn");
+      botoes.forEach((b, i) => b.classList.toggle("ativo", i === index));
+
+      atualizarTextoMomento(index);
+
+      if (carregarVideo) {
+        const iframe = document.getElementById("player-yt");
+        iframe.src = `https://www.youtube.com/embed/${MOMENTOS_VIDEO[index].id}?rel=0`;
+        playerInicializado = true;
+      }
+    }
+
     function verificarSenha() {
       const digitada = document.getElementById("senha").value.trim();
       const erro = document.getElementById("mensagem-erro");
@@ -492,8 +555,9 @@
           areaSurpresa.style.display = "block";
 
           const iframe = document.getElementById("player-yt");
-          if (!iframe.src) {
+          if (!playerInicializado) {
             iframe.src = iframe.getAttribute("data-src");
+            playerInicializado = true;
           }
 
           requestAnimationFrame(() => {
@@ -506,7 +570,7 @@
     }
 
     function trocarAba(nomeAba) {
-      const abas = ["video", "album", "carta"];
+      const abas = ["momentos", "carta"];
       abas.forEach((aba) => {
         document.getElementById("btn-aba-" + aba).classList.toggle("ativa", aba === nomeAba);
         document.getElementById("aba-" + aba).classList.toggle("ativa", aba === nomeAba);
@@ -543,6 +607,8 @@
         verificarSenha();
       }
     });
+
+    montarSeletorMomentos();
   </script>
 </body>
 </html>
