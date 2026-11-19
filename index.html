@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Um presente especial</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #121216;
+      color: #f4f4f6;
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 20px;
+    }
+    .card {
+      width: 100%;
+      max-width: 440px;
+      background: #1c1c24;
+      border: 1px solid #2e2e3a;
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      margin: 14px 0 10px;
+      border-radius: 10px;
+      border: 1px solid #3a3a4a;
+      background: #121216;
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #e11d48;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.92;
+    }
+    .erro {
+      color: #fb7185;
+      font-size: 14px;
+      min-height: 20px;
+      margin-top: 8px;
+    }
+    #area-video {
+      display: none;
+      width: 100%;
+      max-width: 720px;
+    }
+    .video-box {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-box iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="tela-bloqueio">
+    <h2>Para ver o vídeo</h2>
+    <p>Digite o aniversário da Rebeca (DDMM)</p>
+    <input type="password" id="senha" inputmode="numeric" placeholder="DDMM" autocomplete="off" />
+    <button type="button" onclick="verificarSenha()">Abrir surpresa</button>
+    <div class="erro" id="mensagem-erro"></div>
+  </div>
+
+  <div id="area-video">
+    <div class="video-box">
+      <iframe
+        id="player-yt"
+        data-src="https://www.youtube.com/embed/UB3jqBekqHw?rel=0"
+        title="Vídeo surpresa"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    const SENHA_CORRETA = "0803";
+
+    function verificarSenha() {
+      const digitada = document.getElementById("senha").value.trim();
+      const erro = document.getElementById("mensagem-erro");
+
+      if (digitada === SENHA_CORRETA) {
+        document.getElementById("tela-bloqueio").style.display = "none";
+        document.getElementById("area-video").style.display = "block";
+
+        const iframe = document.getElementById("player-yt");
+        if (!iframe.src) {
+          iframe.src = iframe.getAttribute("data-src");
+        }
+      } else {
+        erro.textContent = "Ops, essa data não confere. Tente novamente!";
+      }
+    }
+
+    document.getElementById("senha").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        verificarSenha();
+      }
+    });
+  </script>
+</body>
+</html>
